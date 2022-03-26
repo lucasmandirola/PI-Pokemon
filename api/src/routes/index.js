@@ -280,8 +280,10 @@ router.post("/pokemons", async (req, res) => {
       types,
       createdInDb,
     } = req.body;
+    const lowerName = name.toLowerCase()
+    const lowerType = types.toLowerCase()
     const newPokemon = await Pokemon.create({
-      name,
+      name: lowerName,
       hp,
       image:
         image || "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
@@ -293,7 +295,7 @@ router.post("/pokemons", async (req, res) => {
       createdInDb,
     });
     const typePokemon = await Types.findAll({
-      where: { name: types },
+      where: { name: lowerType },
     });
 
     newPokemon.addType(typePokemon);
@@ -304,7 +306,7 @@ router.post("/pokemons", async (req, res) => {
 });
 
 // {
-//   "name": "Lucas",
+//   "name": "lucas",
 //   "types": "electric",
 //   "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
 //   "hp": 68,
