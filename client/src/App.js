@@ -1,10 +1,21 @@
 import './App.css';
+import React from 'react';
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import LandingPage from './components/LandingPage.jsx';
+import Home from './components/Home.jsx';
+import Details from './components/Details.jsx';
+import Create from './components/Create.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<LandingPage/>}/>
+      <Route path='/home' element={<Home/>} />
+      <Route path='/details/:id' element={<Details/>} />
+      <Route path='/create' element={<Create/>} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 
