@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_NAMES, GET_DETAILS, GET_TYPES, CLEAN_DETAIL, POST_POKEMONS, FILTER_CREATION, FILTER_TYPES, ORDER_BY_ATTACK, ORDER_BY_NAME, DELETE_POKEMON } from "../actions";
+import { GET_POKEMONS, GET_NAMES, GET_DETAILS, GET_TYPES, CLEAN_DETAIL, POST_POKEMONS, FILTER_CREATION, FILTER_TYPES, ORDER_BY_ATTACK, ORDER_BY_NAME } from "../actions";
 
 
 
@@ -28,18 +28,24 @@ function rootReducer (state = initialState, action){
 			}
 
 		case FILTER_TYPES:
-			const allPokes = state.allPokemons
+			// const allPokes = state.allPokemons	
+			const pokes = state.allPokemons
+
 			const typesFilter = action.payload === 'all' 
-			? allPokes 
-			: allPokes.filter(p => p.types?.includes(action.payload))
+			? pokes 
+			: pokes.filter(p => p.types?.includes(action.payload))
 			return {
 				...state,
 				pokemons: typesFilter
 			}
 
 		case FILTER_CREATION:
-			const allPokemonsOrigen = state.allPokemons;
-      const createdFilter = action.payload === "createdInDb" ? allPokemonsOrigen.filter((e) => e.createdInDb) : allPokemonsOrigen.filter((e) => !e.createdInDb)
+			const pokemonsOrigen = state.pokemons;
+      const createdFilter = action.payload === 'all' 
+			? pokemonsOrigen
+			: action.payload === "createdInDb" 
+			? pokemonsOrigen.filter((e) => e.createdInDb) 
+			: pokemonsOrigen.filter((e) => !e.createdInDb)
       return {
         ...state,
         pokemons: createdFilter,
@@ -65,6 +71,23 @@ function rootReducer (state = initialState, action){
 			return {
 				...state,
 				pokemons: sort
+			}
+
+		case GET_NAMES:
+			return {
+				...state,
+				pokemons: action.payload
+			}
+
+		case POST_POKEMONS:
+			return {
+				...state,
+			}
+		
+		case GET_DETAILS:
+			return {
+				...state,
+				details: action.payload
 			}
 		
 		case CLEAN_DETAIL:

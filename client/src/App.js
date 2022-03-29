@@ -4,7 +4,7 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import LandingPage from './components/LandingPage.jsx';
 import Home from './components/Home.jsx';
 import Details from './components/Details.jsx';
-import Create from './components/Create.jsx';
+import CreatePokemon from './components/Create.jsx';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Route path='/' element={<LandingPage/>}/>
       <Route path='/home' element={<Home/>} />
       <Route path='/details/:id' element={<Details/>} />
-      <Route path='/create' element={<Create/>} />
+      <Route path='/create' element={<CreatePokemon/>} />
     </Routes>
     </BrowserRouter>
   );

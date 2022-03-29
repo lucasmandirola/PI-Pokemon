@@ -1,14 +1,13 @@
 import axios from 'axios';
 export const GET_POKEMONS = "GET_POKEMONS";
-// export const GET_NAMES = "GET_NAMES";
-// export const GET_DETAILS = "GET_DETAILS";
+export const GET_NAMES = "GET_NAMES";
+export const GET_DETAILS = "GET_DETAILS";
 export const GET_TYPES = "GET_TYPES";
-// export const POST_POKEMONS = "POST_POKEMONS";
+export const POST_POKEMONS = "POST_POKEMONS";
 export const FILTER_TYPES = "FILTER_TYPES";
 export const FILTER_CREATION = "FILTER_CREATION";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
-// export const DELETE_POKEMON = "DELETE_POKEMON";
 export const CLEAN_DETAIL = "CLEAN_DETAIL"
 const URLBack = 'http://localhost:3001'
 
@@ -68,6 +67,43 @@ export function orderByAttack(payload){
     type: ORDER_BY_ATTACK,
     payload
   }
+}
+
+export function getName(name){
+  return async function (dispatch){
+    try {
+      var json = await axios.get(`${URLBack}/pokemons?name=${name}`)
+      return dispatch ({
+        type: GET_NAMES,
+        payload: json.data
+      })
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+}
+
+export function postPokemon(payload){
+  return async function(dispatch){
+    const json = await axios.post(`${URLBack}/pokemons`, payload)
+    return json 
+  }
+}
+
+export function getDetail(id){
+    return async function(dispatch){
+      try{
+        const json = await axios.get(`${URLBack}/pokemons/${id}`)
+        return dispatch({
+          type: GET_DETAILS,
+          payload: json.data
+        })
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
 }
 
 export function cleanDetail() {

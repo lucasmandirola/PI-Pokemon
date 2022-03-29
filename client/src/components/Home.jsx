@@ -4,6 +4,7 @@ import { getPokemons, filterPokesByType, getTypes, filterByCreate, orderByName, 
 import {Link} from 'react-router-dom'
 import Card from "./Card";
 import Paginado from "./Pagination";
+import SearchBar from "./SearchBar";
 
 export default function Home(){
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export default function Home(){
 		setOrden(`Ordenado ${e.target.value}`)
 	}
 
-	function handleOrderByName(e){
+	function handleOrderByAttack(e){
 		e.preventDefault()
 		dispatch(orderByAttack(e.target.value))
 		setCurrentPage(1)
@@ -62,8 +63,9 @@ export default function Home(){
 	return (
 		<div>
 			<div>
-				<Link to='/pokemons'>Crear Pokemon</Link>
+				<button><Link to='/create'>Crear Pokemon</Link></button>
 				<h1>PokeApp</h1>
+				<SearchBar/>
 				<button onClick={ e => {handleClick(e)} }>Volver a cargar los pokemons</button>
 			</div>
 
@@ -74,7 +76,7 @@ export default function Home(){
 					<option value="des">Z-A</option>
 				</select>
 
-				<select onChange={(e) => handleOrderByName(e)}>
+				<select onChange={(e) => handleOrderByAttack(e)}>
 					<option value= "all">Ordenar por Fuerza</option>
 					<option value="asc">Más fuerte</option>
 					<option value="des">Menos fuerte</option>
@@ -94,22 +96,33 @@ export default function Home(){
 				</select>
 
 				<Paginado
+				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
 				pokesPerPage={pokesPerPage}
 				allPokes={allPokes.length}
 				paginado={paginado}
 				/>
-
-				<div>
-          {
-            allPokes.length ?
-            currentPokes?.map(el=>{
-              return(
-                  <Card key={el.id} id={el.id} name={el.name} types={el.types} image={el.image}/>
-              )
-            }) : <div><h1>No se han encontrado pokemones</h1></div>
-          }
-        </div>
 			</div>
+			<div>
+        {
+          allPokes.length ?
+          currentPokes?.map(el=>{
+            return(
+                <Card key={el.id} id={el.id} name={el.name} types={el.types} image={el.image}/>
+            )
+          }) : <div><h1>No se han encontrado pokemones</h1></div>
+        }
+      </div>
+			<div>
+				<Paginado
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+					pokesPerPage={pokesPerPage}
+					allPokes={allPokes.length}
+					paginado={paginado}
+				/>
+			</div>
+			
 		</div>
 	)
 }
