@@ -1,0 +1,30 @@
+.container {
+  border: solid 1px white;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  opacity: 0.75;
+}
+
+.container:hover {
+  background-color: black;
+  transition: 0.5s;
+  opacity: 1;
+}
+
+.name {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+
+.img {
+  display: block;
+  margin: auto;
+}
+
+.types {
+  display: inline;
+  color: white;
+  align-self: center;
+}

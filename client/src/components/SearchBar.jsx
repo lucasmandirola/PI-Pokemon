@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getName } from "../redux/actions";
+import style from './SearchBar.module.css';
 
 export default function SearchBar(){
   	const dispatch = useDispatch()
@@ -12,20 +13,25 @@ export default function SearchBar(){
 		setName(e.target.value)
 	}
 
-	function handleSubmit(e){
+	// function handleSubmit(e){
+	// 	e.preventDefault()
+	// 	if(name){
+	// 	dispatch(getName(name.toLowerCase()))
+	// 	setName('')
+	// 	}
+
+	// }
+
+	function handleClick(e){
 		e.preventDefault()
-		if(name){
 		dispatch(getName(name.toLowerCase()))
-		}
 		setName('')
 	}
 
 	return (
 		<div>
-			<form onSubmit={(e) => handleSubmit(e)}>
-			<input type='text' placeholder="Buscar por nombre..." onChange={(e) => handleInputChange(e)}/>
-			<button type='submit' >Buscar</button>
-			</form>
+			<input className={style.input} type='text' placeholder="Buscar por nombre..." value={name} onChange={(e) => handleInputChange(e)}/>
+			<button className={style.button} type='button' onClick={handleClick}>Buscar</button>
 		</div>
 	)
 }

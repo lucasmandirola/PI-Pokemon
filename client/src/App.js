@@ -9,12 +9,12 @@ import CreatePokemon from './components/Create.jsx';
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<LandingPage/>}/>
-      <Route path='/home' element={<Home/>} />
-      <Route path='/details/:id' element={<Details/>} />
-      <Route path='/create' element={<CreatePokemon/>} />
-    </Routes>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}/>
+        <Route path='/home' element={<Home/>} />
+        <Route path='/details/:id' element={<Details/>} />
+        <Route path='/create' element={<CreatePokemon/>} />
+      </Routes>
     </BrowserRouter>
   );
 }

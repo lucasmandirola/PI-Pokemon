@@ -9,6 +9,7 @@ import { cleanDetail, getDetail } from "../redux/actions";
 export default function Details(props){
   const dispatch = useDispatch()
 	const { id } = useParams()
+	const detail = useSelector((state) => state.details)
 
   useEffect(() => {
 		dispatch(cleanDetail)
@@ -20,6 +21,7 @@ export default function Details(props){
 
 	function handleClick(e){
 		dispatch(cleanDetail())
+		console.log(detail)
 	}
 
 	return(

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap');
+
+
+.container {
+  display: flex;
+  align-items: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagDesactive{
+  background-color: rgb(74, 74, 216);
+  border: none;
+  margin: 1px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pagActive{
+  background-color: rgb(41, 41, 139);
+  border: none;
+  margin: 1px;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+button {
+  font-family: 'Poppins';
+  font-weight: 200;
+}
