@@ -12,9 +12,10 @@
 .pagDesactive{
   background-color: rgb(74, 74, 216);
   border: none;
-  margin: 1px;
+  margin: 1px 2px;
   color: #fff;
   cursor: pointer;
+  width: 20px;
 }
 
 .pagActive{
@@ -24,9 +25,27 @@
   color: #fff;
   text-decoration: underline;
   cursor: pointer;
+  width: 20px;
 }
 
 button {
   font-family: 'Poppins';
   font-weight: 200;
+}
+
+.flechas {
+  display: flex;
+  align-items: center;
+  background-color: rgb(74, 74, 216);
+  border: none;
+  margin: 1px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 7px;
+  margin-right: 7px;
+  height: 13px;
+}
+
+.pagDesactive:hover, .flechas:hover {
+  background-color: rgb(41, 41, 139);
 }

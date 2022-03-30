@@ -30,6 +30,7 @@ html body {
   border: transparent solid 1px;;
   cursor: pointer;
   outline: none;
+  width: 120px;
 }
 
 .buttonCreate:hover, .reCharge:hover{
@@ -60,6 +61,7 @@ html body {
   border: white 1px solid;
   color: white;
   outline: none;
+  width: 161px;
 }
 
 .orderAndFilter:hover {
@@ -75,6 +77,17 @@ option {
   font-weight: 200;
   background-color: black;
   color: white;
+}
+
+.loader {
+  display: block;
+  margin: 50px auto; 
+}
+
+.notFound {
+  color: rgb(177, 10, 10);
+  display: flex;
+  justify-content: center;
 }
 
 .cards {

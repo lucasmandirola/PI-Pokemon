@@ -7,6 +7,7 @@ import Paginado from "./Pagination";
 import SearchBar from "./SearchBar";
 import style from './Home.module.css';
 import icono from './Imgs/pokemon.png'
+import loading from './Imgs/loadingpokebola.gif'
 
 export default function Home(){
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ export default function Home(){
 			<div className={style.navbar}>
 				<h1 className={style.title}><Link to='/'><img src={icono} alt='Icono' width='120px' height='40px'/></Link></h1>
 				<Link className={style.link} to='/create'><button className={style.buttonCreate}>Crear Pokemon</button></Link>
-				<button className={style.reCharge} onClick={ e => {handleClick(e)} }>Volver a cargar los pokemons</button>
+				<button className={style.reCharge} onClick={ e => {handleClick(e)} }>Volver a cargar</button>
 				<SearchBar />
 			</div>
 			<div className={style.container}>
@@ -111,7 +112,8 @@ export default function Home(){
 				</div>
 
 				{load ? (
-					<h1 className={style.charging}>Cargando...</h1>
+					<img className={style.loader} src={loading} alt='Cargando...' width='110px' height='87px'/>
+					// <h1 className={style.charging}>Cargando...</h1>
 				): !allPokes.length? 
 				(<h1 className={style.notFound}>No se han encontrado pokemons</h1>) :
 					<div className={style.cards}>{

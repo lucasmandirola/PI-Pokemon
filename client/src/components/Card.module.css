@@ -1,15 +1,20 @@
 .container {
-  border: solid 1px white;
+  /* border: solid 1px transparent; */
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  opacity: 0.75;
+  opacity: 0.7;
+}
+
+.link{
+  text-decoration: none;
 }
 
 .container:hover {
-  background-color: black;
+  background-color: transparent;
   transition: 0.5s;
   opacity: 1;
+  /* border: solid 1px white; */
 }
 
 .name {
@@ -24,7 +29,9 @@
 }
 
 .types {
-  display: inline;
+  display: inline-flex;
   color: white;
-  align-self: center;
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
 }
