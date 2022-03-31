@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { cleanDetail, getDetail } from "../redux/actions";
+import style from './Details.module.css';
 
 
 
@@ -25,32 +26,42 @@ export default function Details(props){
 	}
 
 	return(
-		<div>
+		<div className={style.details}>
 			<Link to='/home'>
-				<button onClick={() => handleClick()}>Volver</button>
+				<button onClick={() => handleClick()} className={style.button}>Volver</button>
 			</Link>
-			{poke.length < 0 ? <p>Cargando...</p> :
+			<div className={style.pokeDetail}>
+			{poke.length < 0 ? <p className={style.loading}>Cargando...</p> :
         <div>
-          <div><h1>{poke.name}</h1> </div>
+          <div><h1 className={style.name}>{poke.name}</h1> </div>
         	<div >
-          	<img src={poke.image} alt={poke.name} width='300px' height='375px' />
+          	<img className={style.image} src={poke.image} alt={poke.name} width='200px' height='250px' />
           	<div >
-          	<h3 >Tipos: {poke.types?.map((e)=>(
-          	  <span key={e}>{e}{" / "}</span>
-          	))}
-						</h3>
-          	<h5>ID: {poke.id}</h5>
-          	<h5>Vida: {poke.hp}</h5>
-          	<h5>Fuerza: {poke.attack}</h5>
-          	<h5>Defensa: {poke.defense}</h5>
-          	<h5>Velocidad: {poke.speed}</h5>
-          	<h5>Altura: {poke.height}</h5>
-          	<h5>Peso: {poke.weight}</h5>
-          	</div>
+          		<h3 className={style.types}>Tipos: {poke.types?.map((e)=>(
+          		  <span key={e}> -{e}</span>
+          		))}
+							</h3>
+							<div className={style.stats}>
+								<label>ID: </label> <span className={style.statsNumber}>{poke.id}</span><br/>
+								<div className={style.leftStats}>
+									<div>
+           					<label>Vida: </label> <span className={style.statsNumber}>{poke.hp}</span><br/>
+          					<label>Fuerza: </label> <span className={style.statsNumber}>{poke.attack}</span><br/>
+          					<label>Defensa: </label> <span className={style.statsNumber}>{poke.defense}</span><br/>
+									</div>
+								</div>
+								<div className={style.rightStats}>
+          				<label>Velocidad: </label><span className={style.statsNumber}>{poke.speed}</span><br/>
+          				<label>Altura: </label><span className={style.statsNumber}>{poke.height}</span><br/>
+          				<label>Peso: </label><span className={style.statsNumber}>{poke.weight}</span>
+								</div>
+          		</div>
+						</div>
         	</div> 
 
         </div>
       }
+			</div>
 		</div>
 	)
 }

@@ -1,1 +1,154 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap');
+
+html {
+  outline: none;
+}
+
+.create {
+  background-image: url(./Imgs/create1.png);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  /* border: 1px white solid; */
+  width: 500px;
+  margin-left: 50px;
+  margin-top: 0px;
+  height: 300px;
+}
+
+.buttonHome{
+  font-family: 'Poppins';
+  font-weight: 200;
+  background-color:  rgb(74, 74, 216);
+  color: white;
+  height: 25px;
+  border: transparent solid 1px;;
+  cursor: pointer;
+  outline: none;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.buttonHome:hover {
+  border: white solid 1px;
+  background-color: transparent;
+}
+
+.title {
+  width: 500px;
+  color: white;
+  font-family: 'Poppins';
+  text-align: center;
+  margin-left: 50px;
+}
+
+.label {
+  color: white;
+  font-family: 'Poppins';
+  font-weight: 200;
+}
+
+.inputNumber {
+  margin-left: 10px;
+  width: 42px;
+}
+
+.name {
+  text-align: center;
+}
+
+
+.leftStats {
+  display: block;
+  width: 210px;
+  height: 130px;
+  margin-left: 70px;
+  /* margin-bottom: 10px; 
+  /* border: white 1px solid; */
+}
+
+.rightStats {
+  display: block;
+  width: 210px;
+  height: 130px;
+  margin-left: 295px;
+  margin-top: -130px;
+  margin-bottom: 10px;
+  /* border: white 1px solid; */
+}
+
+p {
+  height: 10px;
+  margin-top: 0px;
+  font-size: 10px;
+  margin-bottom: 15px;
+  color: red;
+}
+
+.image {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.types {
+  text-align: center;
+}
+
+.selectTypes {
+  width: 100px;
+}
+
+.buttonCreate {
+  display: flex;
+  font-family: 'Poppins';
+  font-weight: 200;
+  background-color: rgb(74, 74, 216);
+  border: solid 1px transparent;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  margin: auto;
+  padding: 5px 30px;
+}
+
+.typeSelected{
+  margin-bottom: 10px;
+  text-align: center;
+  height: 50px;
+  /* border: 1px solid white; */
+}
+
+.labelTypes {
+  color: white;
+  font-family: 'Poppins';
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.typeButton{
+  background-color: red;
+  color: white;
+  border: none;
+  margin-left: 10px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  padding: 0px;
+  margin-top: -3px;
+  cursor: pointer;
+}
+
+.buttonCreate:hover {
+  border: solid 1px white;
+  background-color: transparent;
+  color: white;
+  transition: 0.5s;
+}

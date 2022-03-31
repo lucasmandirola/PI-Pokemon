@@ -19,6 +19,7 @@ html body {
 .title {
   padding: 0px;
   margin: -5px;
+  width: 229px;
 }
 
 .buttonCreate, .reCharge{
@@ -62,6 +63,7 @@ html body {
   color: white;
   outline: none;
   width: 161px;
+  cursor: pointer;
 }
 
 .orderAndFilter:hover {

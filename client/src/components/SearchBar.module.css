@@ -9,6 +9,10 @@
   font-weight: 200;
 }
 
+.divBar {
+  width: 220px;
+}
+
 .button {
   background-color: rgb(74, 74, 216);
   color: white;

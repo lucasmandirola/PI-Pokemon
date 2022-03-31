@@ -30,7 +30,7 @@ export default function Home(){
 	useEffect(() => {
 		dispatch(getPokemons())
 		dispatch(getTypes())
-		dispatch(cleanDetail())
+		// dispatch(cleanDetail())
 	}, [dispatch]) 
 
 	function handleClick(e){
