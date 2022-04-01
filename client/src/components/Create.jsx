@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { postPokemon, getTypes } from '../redux/actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { postPokemon, getTypes, getPokemons } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Create.module.css';
 
@@ -19,6 +19,7 @@ function validate(input){
 
 
 export default function CreatePokemon(){
+	const navigate = useNavigate()
   const dispatch = useDispatch()
 	const allPokes = useSelector((state) => state.allPokemons)
   const types = useSelector((state) => state.types)
@@ -72,20 +73,34 @@ export default function CreatePokemon(){
 
 	async function handleSubmit(e){
 		e.preventDefault()
-		dispatch(postPokemon(input))
-		alert('Felicitaciones! Tu pokemon se creo correctamente')
-		setInput({
-			name: '',
-			image: '',
-			hp: 0,
-			attack: 0,
-			defense: 0,
-			speed: 0,
-			height: 0,
-			weight: 0,
-			types: []
-		})
-	  
+		let equals = false
+		allPokes.map(p => {
+			if(p.name === input.name) {
+				equals = true
+				return
+			}
+			})
+		if(equals){
+				setErrors({name: 'Ya existe un pokemon con ese nombre'})
+				return
+		}
+		else{
+			setErrors({})
+			dispatch(postPokemon(input))
+			alert('Felicitaciones! Tu pokemon se creo correctamente')
+			setInput({
+				name: '',
+				image: '',
+				hp: 0,
+				attack: 0,
+				defense: 0,
+				speed: 0,
+				height: 0,
+				weight: 0,
+				types: []
+			})
+			navigate('/home')
+		}
 	}
 
 	function handleDelete(el){
@@ -165,7 +180,7 @@ export default function CreatePokemon(){
 					<div className={style.typeSelected}>
 					{input.types.map((e) => (
 						<div key={e}>
-							<label className={style.labelTypes}>{e.charAt(0).toUpperCase() + e.slice(1)}</label><button className={style.typeButton} onClick={() => handleDelete(e)}>x</button>
+							<label className={style.labelTypes}>👉{e.charAt(0).toUpperCase() + e.slice(1)}</label><button className={style.typeButton} onClick={() => handleDelete(e)}>x</button>
 						</div>
 					))}
 					</div>

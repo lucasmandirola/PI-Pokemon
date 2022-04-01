@@ -34,6 +34,7 @@ html {
   outline: none;
   margin-left: 20px;
   margin-top: 10px;
+  border-radius: 3px;
 }
 
 .buttonHome:hover {
@@ -116,6 +117,7 @@ p {
   outline: none;
   margin: auto;
   padding: 5px 30px;
+  border-radius: 3px;
 }
 
 .typeSelected{
@@ -138,12 +140,16 @@ p {
   border: none;
   margin-left: 10px;
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   font-size: 10px;
-  padding: 0px;
   margin-top: -3px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2px;
+  padding-right: -10px;
 }
 
 .buttonCreate:hover {

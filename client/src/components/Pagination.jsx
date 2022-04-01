@@ -13,13 +13,15 @@ export default function Paginado({currentPage, setCurrentPage, pokesPerPage, all
   const max = allPokes/pokesPerPage
 
   function prevPage(){
-    setInput(input - 1)
     setCurrentPage(input - 1)
+    setInput(input - 1)
+    
   }
 
   function nextPage(){
-    setInput(input + 1)
     setCurrentPage(input + 1)
+    setInput(input + 1)
+    
   }
 
   return (

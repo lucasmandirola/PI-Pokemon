@@ -32,6 +32,7 @@ html body {
   cursor: pointer;
   outline: none;
   width: 120px;
+  border-radius: 3px;
 }
 
 .buttonCreate:hover, .reCharge:hover{
@@ -64,6 +65,7 @@ html body {
   outline: none;
   width: 161px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .orderAndFilter:hover {
@@ -72,6 +74,7 @@ html body {
   color: white;
   transition: .5s;
   outline: none;
+  border-radius: 3px;
 }
 
 option {

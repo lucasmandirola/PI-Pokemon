@@ -23,7 +23,7 @@ export default function Home(){
 	const indexOfLastPoke = currentPage * pokesPerPage;
 	const indexOfFirstPoke = indexOfLastPoke - pokesPerPage;
 	const currentPokes = allPokes.slice(indexOfFirstPoke, indexOfLastPoke);
-	const paginado = (pageNumber) => {
+	function paginado(pageNumber){
 		setCurrentPage(pageNumber)
 	}
 

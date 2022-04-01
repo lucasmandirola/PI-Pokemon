@@ -38,7 +38,7 @@ export default function Details(props){
           	<img className={style.image} src={poke.image} alt={poke.name} width='200px' height='250px' />
           	<div >
           		<h3 className={style.types}>Tipos: {poke.types?.map((e)=>(
-          		  <span key={e}> -{e}</span>
+          		  <span key={e}> 👉{e}</span>
           		))}
 							</h3>
 							<div className={style.stats}>
