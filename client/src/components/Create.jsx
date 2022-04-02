@@ -123,7 +123,7 @@ export default function CreatePokemon(){
         <div className={style.container}>
           <div className={style.name}>
 						<label className={style.label}>*Nombre: </label>
-						<input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)}/>
+						<input type='text' className={style.inputName} value={input.name} name='name' onChange={(e) => handleChange(e)}/>
 						<p>{errors.name}</p>
 					</div>
 					<div className={style.leftStats}>
@@ -166,7 +166,7 @@ export default function CreatePokemon(){
 					</div>
         	<div className={style.image}>
 						<label className={style.label}>URL de la imagen: </label>
-						<input type='url' value={input.image} name='image' onChange={(e) => handleChange(e)}/>
+						<input type='url' className={style.inputImage} value={input.image} name='image' onChange={(e) => handleChange(e)}/>
 					</div>
 
 					<div className={style.types}><label className={style.label}>*Tipos: </label>
