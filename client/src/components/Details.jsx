@@ -2,8 +2,9 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { cleanDetail, getDetail, deleteById } from "../redux/actions";
+import { cleanDetail, getDetail, deleteById, cleanPoke } from "../redux/actions";
 import style from './Details.module.css';
+import loading from './Imgs/loadingpokebola.gif'
 
 
 
@@ -28,10 +29,14 @@ export default function Details(props){
 
 	function handleDelete(){
 		// console.log(poke.createdInDb)
+		dispatch(cleanPoke())
 		if(poke.createdInDb){ 
-			dispatch(deleteById(id))
-			alert('Pokemon eliminado correctamente')
-			navigate('/home')
+			const sure = window.confirm('Estas seguro de eliminar este pokemon?');
+			if(sure) {
+				dispatch(deleteById(id))
+				alert('Pokemon eliminado correctamente')
+				navigate('/home')
+			}
 		}
 		else alert('No se puede eliminar un pokemon original')
 	}
@@ -41,9 +46,9 @@ export default function Details(props){
 			<Link to='/home'>
 				<button onClick={() => handleClick()} className={style.button}>Volver</button>
 			</Link>
-			<button onClick={() => handleDelete()} className={style.button}>Eliminar</button>
+			
 			<div className={style.pokeDetail}>
-			{poke.length < 0 ? <p className={style.loading}>Cargando...</p> :
+			{poke.name ? (
         <div>
           <div><h1 className={style.name}>{poke.name}</h1> </div>
         	<div >
@@ -70,8 +75,8 @@ export default function Details(props){
           		</div>
 						</div>
         	</div> 
-
-        </div>
+					<button onClick={() => handleDelete()} className={style.deleteButton}>Eliminar</button>
+        </div>) : (<img className={style.loader} src={loading} alt='Cargando...' width='110px' height='87px'/>)
       }
 			</div>
 		</div>
