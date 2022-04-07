@@ -116,6 +116,36 @@ const nameApi = async (name) => {
   }
 };
 
+// Promesas
+// const nameApi = (name) => {
+//   try {
+//     return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) => {
+//       let urlData = res.data;
+//       urlData = [
+//         {
+//           id: urlData.id,
+//           name: urlData.name,
+//           types:
+//             urlData.types.length < 2
+//               ? [urlData.types[0].type.name]
+//               : [urlData.types[0].type.name, urlData.types[1].type.name],
+//           image: urlData.sprites.other.home.front_default,
+//           hp: urlData.stats[0].base_stat,
+//           attack: urlData.stats[1].base_stat,
+//           defense: urlData.stats[2].base_stat,
+//           speed: urlData.stats[5].base_stat,
+//           height: urlData.height,
+//           weight: urlData.weight,
+//         }
+//       ]
+//       return urlData
+//     })
+//   }
+//   catch(err){
+//     console.log(err)
+//   }
+// } 
+
 const nameDb = async (name) => {
   try {
     const nombreDb = await Pokemon.findAll({
@@ -281,7 +311,7 @@ router.post("/pokemons", async (req, res) => {
   const crearPoke = await Pokemon.create({
     name,
     image:
-      image || "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+      image || "https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg",
     hp,
     attack,
     defense,

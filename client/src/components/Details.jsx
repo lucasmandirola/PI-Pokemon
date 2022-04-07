@@ -1,16 +1,17 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { cleanDetail, getDetail } from "../redux/actions";
+import { cleanDetail, getDetail, deleteById } from "../redux/actions";
 import style from './Details.module.css';
 
 
 
 export default function Details(props){
   const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const { id } = useParams()
-	const detail = useSelector((state) => state.details)
+	// const detail = useSelector((state) => state.details)
 
   useEffect(() => {
 		dispatch(cleanDetail)
@@ -22,7 +23,17 @@ export default function Details(props){
 
 	function handleClick(e){
 		dispatch(cleanDetail())
-		console.log(detail)
+		// console.log(detail)
+	}
+
+	function handleDelete(){
+		// console.log(poke.createdInDb)
+		if(poke.createdInDb){ 
+			dispatch(deleteById(id))
+			alert('Pokemon eliminado correctamente')
+			navigate('/home')
+		}
+		else alert('No se puede eliminar un pokemon original')
 	}
 
 	return(
@@ -30,6 +41,7 @@ export default function Details(props){
 			<Link to='/home'>
 				<button onClick={() => handleClick()} className={style.button}>Volver</button>
 			</Link>
+			<button onClick={() => handleDelete()} className={style.button}>Eliminar</button>
 			<div className={style.pokeDetail}>
 			{poke.length < 0 ? <p className={style.loading}>Cargando...</p> :
         <div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getName } from "../redux/actions";
+import { getName, cleanPoke } from "../redux/actions";
 import style from './SearchBar.module.css';
 
 export default function SearchBar(){
@@ -24,6 +24,7 @@ export default function SearchBar(){
 
 	function handleClick(e){
 		e.preventDefault()
+		dispatch(cleanPoke())
 		dispatch(getName(name.toLowerCase()))
 		setName('')
 	}

@@ -15,13 +15,11 @@ export default function Paginado({currentPage, setCurrentPage, pokesPerPage, all
   function prevPage(){
     setCurrentPage(input - 1)
     setInput(input - 1)
-    
   }
 
   function nextPage(){
     setCurrentPage(input + 1)
     setInput(input + 1)
-    
   }
 
   return (

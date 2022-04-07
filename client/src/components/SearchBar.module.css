@@ -12,6 +12,7 @@
 
 .divBar {
   width: 220px;
+  border-radius: 3px;
 }
 
 .button {
@@ -24,6 +25,7 @@
   font-family: 'Poppins';
   font-weight: 200;
   border-radius: 3px;
+  margin-left: 2px;
 }
 
 .button:hover {

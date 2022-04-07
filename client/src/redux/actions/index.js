@@ -9,7 +9,23 @@ export const FILTER_CREATION = "FILTER_CREATION";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const CLEAN_DETAIL = "CLEAN_DETAIL"
+export const CLEAN_POKEMON = 'CLEAN_POKEMON'
+export const DELETE_BY_ID = 'DELETE_BY_ID';
 const URLBack = 'http://localhost:3001'
+
+export function deleteById (id) {
+  return async function (dispatch){
+    try {
+      const json = await axios.delete(`${URLBack}/delete/${id}`)
+      return dispatch({
+        type: DELETE_BY_ID,
+        payload: json.data
+      })
+    }catch(err) {
+      console.log(err)
+    }
+  }
+}
 
 
 export function getPokemons() {
@@ -111,4 +127,11 @@ export function cleanDetail() {
     type: CLEAN_DETAIL,
     payload: {},
   };
+}
+
+export function cleanPoke(){
+  return{
+    type: CLEAN_POKEMON,
+    payload: {}
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { postPokemon, getTypes, getPokemons } from '../redux/actions';
+import { postPokemon, getTypes, getPokemons, cleanPoke } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Create.module.css';
 
@@ -38,6 +38,7 @@ export default function CreatePokemon(){
 
 	useEffect(() => {
 	  dispatch(getTypes())
+		dispatch(getPokemons())
 	}, [dispatch])
 
 
@@ -73,13 +74,15 @@ export default function CreatePokemon(){
 
 	async function handleSubmit(e){
 		e.preventDefault()
+		dispatch(cleanPoke())
 		let equals = false
 		allPokes.map(p => {
 			if(p.name === input.name) {
 				equals = true
-				return
+				return equals
 			}
 			})
+		// allPokes.map(p => p.name === input.name ? equals = true : equals = false)
 		if(equals){
 				setErrors({name: 'Ya existe un pokemon con ese nombre'})
 				return
@@ -115,9 +118,14 @@ export default function CreatePokemon(){
 
 	}
 
+	function handleBack() {
+		dispatch(cleanPoke())
+	}
+
   return (
     <div className={style.create}>
-      <Link to='/home'><button className={style.buttonHome}>Volver</button></Link>
+      <Link to='/home'><button onClick={() => handleBack()} className={style.buttonHome}>Volver</button></Link>
+			<div className={style.containerFather}>
       <h1 className={style.title}>Crea tu propio Pokemon!</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={style.container}>
@@ -187,6 +195,7 @@ export default function CreatePokemon(){
 					<button type='submit' disabled={errors.name || errors.hp || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.types? true : false} className={style.buttonCreate}>Crear pokemon</button>
       	</div>
       </form>
+			</div>
 
     </div>
     )

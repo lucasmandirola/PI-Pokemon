@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getPokemons, filterPokesByType, getTypes, filterByCreate, orderByName, orderByAttack, cleanDetail } from "../redux/actions";
+import { getPokemons, filterPokesByType, getTypes, filterByCreate, orderByName, orderByAttack, cleanDetail, cleanPoke } from "../redux/actions";
 import {Link} from 'react-router-dom'
 import Card from "./Card";
 import Paginado from "./Pagination";
@@ -19,7 +19,8 @@ export default function Home(){
 
 	// Paginado
 	const [currentPage, setCurrentPage] = useState(1);
-	const [pokesPerPage, setPokesPerPage] = useState(12);
+	// const [pokesPerPage, setPokesPerPage] = useState(12);
+	const pokesPerPage = 12
 	const indexOfLastPoke = currentPage * pokesPerPage;
 	const indexOfFirstPoke = indexOfLastPoke - pokesPerPage;
 	const currentPokes = allPokes.slice(indexOfFirstPoke, indexOfLastPoke);
@@ -30,11 +31,12 @@ export default function Home(){
 	useEffect(() => {
 		dispatch(getPokemons())
 		dispatch(getTypes())
-		// dispatch(cleanDetail())
+		dispatch(cleanDetail())
 	}, [dispatch]) 
 
 	function handleClick(e){
 		e.preventDefault()
+		dispatch(cleanPoke())
 		dispatch(getPokemons())
 	}
 
@@ -115,7 +117,9 @@ export default function Home(){
 					<img className={style.loader} src={loading} alt='Cargando...' width='110px' height='87px'/>
 					// <h1 className={style.charging}>Cargando...</h1>
 				): !allPokes.length? 
-				(<h1 className={style.notFound}>No se han encontrado pokemons</h1>) :
+				(<div><h1 className={style.notFound}>No se han encontrado pokemons</h1><img className={style.loader} src={'https://c.tenor.com/pAob-LXVq30AAAAi/sleepy-pikachu.gif'} alt='Pokemon not found' width='498px' height='379px'/></div>) :
+				// 'https://c.tenor.com/5r0DYyceZ8QAAAAi/pikachu-fire.gif'
+				// (<h1 className={style.notFound}>No se han encontrado pokemons</h1>) :
 					<div className={style.cards}>{
 						currentPokes?.map(el=>{
 							return(
