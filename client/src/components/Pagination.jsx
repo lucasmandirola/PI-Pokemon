@@ -25,10 +25,14 @@ export default function Paginado({currentPage, setCurrentPage, pokesPerPage, all
   return (
     <div className={style.container}>
       <button className={style.flechas} disabled={currentPage === 1 || currentPage < 1} onClick={prevPage}>{'<'}</button>
-      {pageNumbers &&
+      {/* {pageNumbers &&
       pageNumbers.map(number => (
         <button key={number} onClick={() => paginado(number)} className={currentPage === number ? style.pagActive : style.pagDesactive}>{number}</button>
-      ))}
+      ))} */}
+      {/* <p className={style.text}>Pág.</p> */}
+      <button className={style.pagDesactive}>{currentPage}</button>
+      <p className={style.text}> - </p>
+      <button className={style.pagDesactive}>{pageNumbers.length}</button>
       <button className={style.flechas} disabled={currentPage === Math.ceil(max) || currentPage > Math.ceil(max)} onClick={nextPage}>{'>'}</button>
     </div>
   )

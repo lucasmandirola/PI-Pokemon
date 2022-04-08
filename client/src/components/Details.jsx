@@ -60,7 +60,7 @@ export default function Details(props){
           		))}
 							</h3>
 							<div className={style.stats}>
-								<label>ID: </label> <span className={style.statsNumber}>{poke.id}</span><br/>
+								<label>ID: </label> <span className={style.idNumber}>{poke.id.length > 4 ? poke.id.slice(0,5)+'...' : poke.id}</span><br/>
 								<div className={style.leftStats}>
 									<div>
            					<label>Vida: </label> <span className={style.statsNumber}>{poke.hp}</span><br/>

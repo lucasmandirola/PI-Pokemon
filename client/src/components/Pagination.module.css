@@ -9,16 +9,16 @@
   margin-top: 2rem;
 }
 
-.pagDesactive{
+/* .pagDesactive{
   background-color: rgb(74, 74, 216);
   border: none;
   margin: 1px 2px;
   color: #fff;
   cursor: pointer;
   width: 20px;
-}
+} */
 
-.pagActive{
+/* .pagActive{
   background-color: rgb(41, 41, 139);
   border: none;
   margin: 1px;
@@ -26,6 +26,22 @@
   text-decoration: underline;
   cursor: pointer;
   width: 20px;
+} */
+
+.pagDesactive{
+  background-color: rgb(74, 74, 216);
+  border: none;
+  margin: 1px 2px;
+  color: #fff;
+  /* cursor: pointer; */
+  width: 20px;
+}
+
+.text {
+  color: white;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 button {
@@ -48,6 +64,10 @@ button {
   border-radius: 3px;
 }
 
-.pagDesactive:hover, .flechas:hover {
+/* .pagDesactive:hover, .flechas:hover {
+  background-color: rgb(41, 41, 139);
+} */
+
+.flechas:hover {
   background-color: rgb(41, 41, 139);
 }

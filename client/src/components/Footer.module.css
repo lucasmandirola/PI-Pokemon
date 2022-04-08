@@ -18,7 +18,7 @@
   cursor: pointer;
   height: 17px;
   width: 17px;
-  margin-right: 5px;
+  margin-left: 5px;
   filter: invert(100%);
   transition: 0.5s;
 }

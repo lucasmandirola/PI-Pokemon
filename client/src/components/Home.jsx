@@ -107,13 +107,22 @@ export default function Home(){
 						</select>
 					</div>
 
-					<Paginado
+					{/* <Paginado
 					currentPage={currentPage}
 					setCurrentPage={setCurrentPage}
 					pokesPerPage={pokesPerPage}
 					allPokes={allPokes.length}
 					paginado={paginado}
-					/>
+					/> */}
+
+					{load ? null : 
+					(<Paginado
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+					pokesPerPage={pokesPerPage}
+					allPokes={allPokes.length}
+					paginado={paginado}
+					/>)}
 				</div>
 
 				{load ? (

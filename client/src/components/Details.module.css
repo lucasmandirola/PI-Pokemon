@@ -102,6 +102,10 @@ span {
   font-weight: 500;
 }
 
+.idNumber {
+  margin-left: 1.5px;
+}
+
 .statsNumber {
   text-decoration: underline;
   margin-left: 1.5px;
