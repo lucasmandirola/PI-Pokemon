@@ -5,6 +5,11 @@ html body {
   background-size: cover;
 }
 
+.father{
+  min-height: 95.5vh;
+  /* min-height: 100vh; */
+}
+
 .navbar {
   display: flex;
   margin-top: 5px;
@@ -85,8 +90,10 @@ option {
 }
 
 .loader {
-  display: block;
-  margin: 50px auto; 
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
 }
 
 .notFound {

@@ -5,15 +5,17 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  height: 100vh;
+  height: 96.2vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .loader{
-    display: block;
-    margin: 50px auto; 
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
   }
  
 .pokeDetail {

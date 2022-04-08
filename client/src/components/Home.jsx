@@ -67,7 +67,7 @@ export default function Home(){
 	}
 
 	return (
-		<div>
+		<div className={style.father}>
 			<div className={style.navbar}>
 				<h1 className={style.title}><Link to='/'><img src={icono} alt='Icono' width='120px' height='40px'/></Link></h1>
 				<Link className={style.link} to='/create'><button className={style.buttonCreate}>Crear Pokemon</button></Link>
