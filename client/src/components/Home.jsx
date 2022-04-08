@@ -7,7 +7,8 @@ import Paginado from "./Pagination";
 import SearchBar from "./SearchBar";
 import style from './Home.module.css';
 import icono from './Imgs/pokemon.png'
-import loading from './Imgs/loadingpokebola.gif'
+import loading from './Imgs/loadingpokebola2.gif';
+import Footer from './Footer'
 
 export default function Home(){
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export default function Home(){
 	function handleClick(e){
 		e.preventDefault()
 		dispatch(cleanPoke())
+		setCurrentPage(1)
 		dispatch(getPokemons())
 	}
 
@@ -67,6 +69,7 @@ export default function Home(){
 	}
 
 	return (
+		<>
 		<div className={style.father}>
 			<div className={style.navbar}>
 				<h1 className={style.title}><Link to='/'><img src={icono} alt='Icono' width='120px' height='40px'/></Link></h1>
@@ -114,7 +117,7 @@ export default function Home(){
 				</div>
 
 				{load ? (
-					<img className={style.loader} src={loading} alt='Cargando...' width='110px' height='87px'/>
+					<img className={style.loader} src={loading} alt='Cargando...' width='100px' height='130px'/>
 					// <h1 className={style.charging}>Cargando...</h1>
 				): !allPokes.length? 
 				(<div><h1 className={style.notFound}>No se han encontrado pokemons</h1><img className={style.loader} src={'https://c.tenor.com/pAob-LXVq30AAAAi/sleepy-pikachu.gif'} alt='Pokemon not found' width='498px' height='379px'/></div>) :
@@ -140,6 +143,9 @@ export default function Home(){
 					/>
 				</div> */}
 			</div>
+			
 		</div>
+		<Footer/>
+		</>
 	)
 }

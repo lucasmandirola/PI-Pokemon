@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { cleanDetail, getDetail, deleteById, cleanPoke } from "../redux/actions";
 import style from './Details.module.css';
-import loading from './Imgs/loadingpokebola.gif'
+import loading from './Imgs/loadingpokebola2.gif'
 
 
 
@@ -24,6 +24,7 @@ export default function Details(props){
 
 	function handleClick(e){
 		dispatch(cleanDetail())
+		dispatch(cleanPoke())
 		// console.log(detail)
 	}
 
@@ -76,7 +77,7 @@ export default function Details(props){
 						</div>
         	</div> 
 					<button onClick={() => handleDelete()} className={style.deleteButton}>Eliminar</button>
-        </div>) : (<img className={style.loader} src={loading} alt='Cargando...' width='110px' height='87px'/>)
+        </div>) : (<img className={style.loader} src={loading} alt='Cargando...' width='100px' height='130px'/>)
       }
 			</div>
 		</div>
