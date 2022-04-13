@@ -9,16 +9,16 @@
   margin-top: 2rem;
 }
 
-/* .pagDesactive{
+.pagDesactive{
   background-color: rgb(74, 74, 216);
   border: none;
   margin: 1px 2px;
   color: #fff;
   cursor: pointer;
   width: 20px;
-} */
+}
 
-/* .pagActive{
+.pagActive{
   background-color: rgb(41, 41, 139);
   border: none;
   margin: 1px;
@@ -26,16 +26,15 @@
   text-decoration: underline;
   cursor: pointer;
   width: 20px;
-} */
+}
 
-.pagDesactive{
+/* .pagDesactive{
   background-color: rgb(74, 74, 216);
   border: none;
   margin: 1px 2px;
   color: #fff;
-  /* cursor: pointer; */
   width: 20px;
-}
+} */
 
 .text {
   color: white;

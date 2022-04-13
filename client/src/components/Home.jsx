@@ -13,14 +13,13 @@ import Footer from './Footer'
 export default function Home(){
   const dispatch = useDispatch();
 
-	const allPokes = useSelector((state) => state.pokemons);
+	const allPokes = useSelector((state) => state.pokemons); 
 	const types = useSelector((state) => state.types);
 	const load = useSelector((state) => state.isLoading) 
 	const [orden, setOrden] = useState('')
 
 	// Paginado
 	const [currentPage, setCurrentPage] = useState(1);
-	// const [pokesPerPage, setPokesPerPage] = useState(12);
 	const pokesPerPage = 12
 	const indexOfLastPoke = currentPage * pokesPerPage;
 	const indexOfFirstPoke = indexOfLastPoke - pokesPerPage;
@@ -129,7 +128,7 @@ export default function Home(){
 					<img className={style.loader} src={loading} alt='Cargando...' width='100px' height='130px'/>
 					// <h1 className={style.charging}>Cargando...</h1>
 				): !allPokes.length? 
-				(<div><h1 className={style.notFound}>No se han encontrado pokemons</h1><img className={style.loader} src={'https://c.tenor.com/pAob-LXVq30AAAAi/sleepy-pikachu.gif'} alt='Pokemon not found' width='498px' height='379px'/></div>) :
+				(<div><h1 className={style.notFound}>No se han encontrado pokemons</h1><img className={style.notFounGif} src={'https://c.tenor.com/pAob-LXVq30AAAAi/sleepy-pikachu.gif'} alt='Pokemon not found' width='498px' height='379px'/></div>) :
 				// 'https://c.tenor.com/5r0DYyceZ8QAAAAi/pikachu-fire.gif'
 				// (<h1 className={style.notFound}>No se han encontrado pokemons</h1>) :
 					<div className={style.cards}>{

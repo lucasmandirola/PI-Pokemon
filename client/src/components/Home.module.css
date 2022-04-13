@@ -96,6 +96,13 @@ option {
   transform: translate(-50%, -50%); 
 }
 
+.notFounGif{
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .notFound {
   color: rgb(177, 10, 10);
   display: flex;

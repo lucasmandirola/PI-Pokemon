@@ -38,6 +38,7 @@
   outline: none;
   margin-left: 20px;
   margin-top: 10px;
+  width: 55px;
 }
 
 .button:hover {
@@ -127,7 +128,7 @@ span {
   margin: auto;
   margin-bottom: 30px;
   margin-top: 0px;
-}
+} 
 
 .deleteButton:hover{
   border: white 1px solid;

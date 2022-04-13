@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_NAMES, GET_DETAILS, GET_TYPES, CLEAN_DETAIL, POST_POKEMONS, FILTER_CREATION, FILTER_TYPES, ORDER_BY_ATTACK, ORDER_BY_NAME, CLEAN_POKEMON, DELETE_BY_ID } from "../actions";
+import { GET_POKEMONS, GET_NAMES, GET_DETAILS, GET_TYPES, CLEAN_DETAIL, POST_POKEMONS, FILTER_CREATION, DELETE_BY_ID, FILTER_TYPES, ORDER_BY_ATTACK, ORDER_BY_NAME, CLEAN_POKEMON, UPDATE_BY_ID } from "../actions";
 
 
 
@@ -30,7 +30,6 @@ function rootReducer (state = initialState, action){
 			}
 
 		case FILTER_TYPES:
-			// const allPokes = state.allPokemons	
 			const pokes = state.allPokemons
 
 			const typesFilter = action.payload === 'all' 
@@ -107,6 +106,13 @@ function rootReducer (state = initialState, action){
 		case CLEAN_POKEMON:
 			return {
 				...state,
+				isLoading: true
+			}
+
+		case UPDATE_BY_ID:
+			return {
+				...state,
+				details: action.payload,
 				isLoading: true
 			}
 

@@ -1,53 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { postPokemon, getTypes, getPokemons, cleanPoke } from '../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { update, getTypes, getPokemons, cleanPoke, getDetail } from "../redux/actions";
 import style from './Create.module.css';
 
-// function validate(input){
-// 	let errors = {}
-// 	if(!input.name || input.name.length > 20 || ! /^[a-z]+$/.test(input.name)) errors.name = 'El campo "nombre" es obligatorio, solo debe contener letras y debe tener menos de 20 caracteres'
-// 	if(input.hp > 200 || input.hp < 0) errors.hp = 'El campo "vida" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.attack > 200 || input.attack < 0) errors.attack = 'El campo "fuerza" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.defense > 200 || input.defense < 0) errors.defense = 'El campo "defensa" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.speed > 200 || input.speed < 0) errors.speed = 'El campo "velocidad" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.height > 200 || input.height < 0) errors.height = 'El campo "altura" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.weight > 200 || input.weight < 0) errors.weight = 'El campo "peso" es obligatorio y debe tener en 0 y 200 puntos'
-// 	if(input.types.length === 0) errors.types = 'El campo "tipos" es obligatorio y pueden ser máximo 2'
-// 	return errors
-// }
-
-
-export default function CreatePokemon(){
-	const navigate = useNavigate()
+export default function Update(){
+  const {id} = useParams()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-	const allPokes = useSelector((state) => state.allPokemons)
+  const [errors, setErrors] = useState({})
+  const allPokes = useSelector((state) => state.allPokemons)
   const types = useSelector((state) => state.types)
-	const [errors, setErrors] = useState({})
+  const uuid = id
+
+  useEffect(() => {
+    dispatch(getTypes())
+		dispatch(getDetail(id))
+    dispatch(getPokemons())
+	}, [id, dispatch])
+
+  const poke = useSelector((state) => state.details)
   const [input, setInput] = useState({
-    name: '',
-    image: '',
-    hp: 0,
-    attack: 0,
-    defense: 0,
-    speed: 0,
-    height: 0,
-    weight: 0,
-    types: []
+    name: poke.name,
+    image: poke.image,
+    hp: poke.hp,
+    attack: poke.attack,
+    defense: poke.defense,
+    speed: poke.speed,
+    height: poke.height,
+    weight: poke.weight,
+    types: poke.types
   })
 
-	useEffect(() => {
-	  dispatch(getTypes())
-		dispatch(getPokemons())
-	}, [dispatch])
-
-	function validate(input){
+  function validate(input){
 		let errors = {}
-		let equals = false
-		allPokes.map(p => p.name === input.name ? equals = true : null)
-		if(equals){
-			errors.name = 'Ya existe un pokemon con ese nombre'
-		}
+
 		if(!input.name || input.name.length > 12 || ! /^[a-z]+$/.test(input.name)) errors.name = 'El campo "nombre" es obligatorio, solo debe contener letras y debe tener menos de 12 caracteres'
 		if(input.hp > 200 || input.hp < 0) errors.hp = 'El campo "vida" es obligatorio y debe tener en 0 y 200 puntos'
 		if(input.attack > 200 || input.attack < 0) errors.attack = 'El campo "fuerza" es obligatorio y debe tener en 0 y 200 puntos'
@@ -55,15 +43,11 @@ export default function CreatePokemon(){
 		if(input.speed > 200 || input.speed < 0) errors.speed = 'El campo "velocidad" es obligatorio y debe tener en 0 y 200 puntos'
 		if(input.height > 200 || input.height < 0) errors.height = 'El campo "altura" es obligatorio y debe tener en 0 y 200 puntos'
 		if(input.weight > 200 || input.weight < 0) errors.weight = 'El campo "peso" es obligatorio y debe tener en 0 y 200 puntos'
-		if(input.types.length === 0) errors.types = 'El campo "tipos" es obligatorio y pueden ser máximo 2'
+		// if(input.types.length === 0) errors.types = 'El campo "tipos" es obligatorio y pueden ser máximo 2'
 		return errors
 	}
 
-
-
-
-
-	function handleChange(e){
+  function handleChange(e){
 		setErrors(validate({
 			...input,
 			[e.target.name]: e.target.value.toLowerCase()
@@ -72,46 +56,40 @@ export default function CreatePokemon(){
 			...input,
 			[e.target.name] : e.target.value.toLowerCase()
 		})
-
 	}
 
-	function handleSelect(e){
-		setErrors(validate({
-			...input,
-			types: e.target.value.toLowerCase()
-		}))
-		if(e.target.value === input.types[0] && input.types.length < 2) alert('No se puede seleccionar el mismo tipo 2 veces')
-		else if (input.types.length < 2) {
-			setInput({
-				...input,
-				types: [...input.types, e.target.value]
-			})
-		}
-		else{
-			alert('El campo "tipos" puede ser máximo 2')
-		}
-
-	}
-
-	async function handleSubmit(e){
-		e.preventDefault()
-		dispatch(cleanPoke())
-		// let equals = false
-		// allPokes.map(p => {
-		// 	if(p.name === input.name) {
-		// 		equals = true
-		// 		return equals
-		// 	}
+  function handleSelect(e){
+		// setErrors(validate({
+		// 	...input,
+		// 	types: e.target.value.toLowerCase()
+		// }))
+		// if(e.target.value === input.types[0] && input.types.length < 2) alert('No se puede seleccionar el mismo tipo 2 veces')
+		// else if (input.types.length < 2) {
+		// 	setInput({
+		// 		...input,
+		// 		types: [...input.types, e.target.value]
 		// 	})
-		// allPokes.map(p => p.name === input.name ? equals = true : null)
-		// if(equals){
-		// 		setErrors({name: 'Ya existe un pokemon con ese nombre'})
-		// 		return
+    //   console.log(input.types)
 		// }
 		// else{
+		// 	alert('El campo "tipos" puede ser máximo 2')
+		// }
+    alert('El campo "tipos" no es modificable')
+	}
+
+  function handleBack() {
+		dispatch(cleanPoke())
+    navigate(`/details/${id}`)
+	}
+
+  async function handleSubmit(e){
+		e.preventDefault()
+    const sure = window.confirm('Estas seguro de eliminar este pokemon?');
+    if(sure){
+		  dispatch(cleanPoke())
 			setErrors({})
-			dispatch(postPokemon(input))
-			alert('Felicitaciones! Tu pokemon se creo correctamente')
+			dispatch(update(uuid, input))
+			alert('Felicitaciones! Tu pokemon se actualizó correctamente')
 			setInput({
 				name: '',
 				image: '',
@@ -123,11 +101,12 @@ export default function CreatePokemon(){
 				weight: 0,
 				types: []
 			})
-			navigate('/home')
-		// }
+			navigate(`/details/${id}`)
+      // navigate(`/home`)
+  }
 	}
 
-	function handleDelete(el){
+  function handleDelete(el){
 		setErrors(validate({
 			...input,
 			types: input.types.filter((e) => e !== el)
@@ -139,15 +118,11 @@ export default function CreatePokemon(){
 
 	}
 
-	function handleBack() {
-		dispatch(cleanPoke())
-	}
-
   return (
     <div className={style.create}>
       <button onClick={() => handleBack()} className={style.buttonHome}>Volver</button>
 			<div className={style.containerFather}>
-      <h1 className={style.title}>Crea tu propio Pokemon!</h1>
+      <h1 className={style.title}>Actualiza tu Pokemon!</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={style.container}>
           <div className={style.name}>
@@ -198,8 +173,8 @@ export default function CreatePokemon(){
 						<input type='url' className={style.inputImage} value={input.image} name='image' onChange={(e) => handleChange(e)}/>
 					</div>
 
-					<div className={style.types}><label className={style.label}>*Tipos: </label>
-						<select className={style.selectTypes} onChange={(e) => handleSelect(e)}>
+					<div className={style.types}><label className={style.label}>Tipos: </label>
+						<select className={style.selectTypes} onChange={(e) => handleSelect(e)} value='disabled'>
 							{types?.map((e) => (
 								<option key={e} value={e}>{e}</option>
 							))}
@@ -213,11 +188,14 @@ export default function CreatePokemon(){
 						</div>
 					))}
 					</div>
-					<button type='submit' disabled={errors.name || input.name === '' || errors.hp || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.types? true : false} className={style.buttonCreate}>Crear pokemon</button>
+					<button type='submit' disabled={errors.name || input.name === '' || errors.hp || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.types? true : false} className={style.buttonCreate}>Modificar pokemon</button>
       	</div>
       </form>
 			</div>
 
     </div>
     )
+
+
+
 }

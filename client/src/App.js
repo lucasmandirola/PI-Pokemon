@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage.jsx';
 import Home from './components/Home.jsx';
 import Details from './components/Details.jsx';
 import CreatePokemon from './components/Create.jsx';
+import Update from './components/Update'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/home' element={<Home/>} />
         <Route path='/details/:id' element={<Details/>} />
         <Route path='/create' element={<CreatePokemon/>} />
+        <Route path='/update/:id' element={<Update/>} />
       </Routes>
       
     </BrowserRouter>

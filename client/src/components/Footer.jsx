@@ -7,8 +7,8 @@ export default function Footer(){
   return(
     <div className={style.footer}>
       <p className={style.title}>COPYRIGHT LUCAS MANDIROLA - 2022.</p>
-      <a href="https://www.linkedin.com/in/lucasmandirola/" target='_blank'><img src={linkedin} className={style.linkedin}/></a>
-      <a href="https://github.com/lucasmandirola/PI-Pokemon" target='_blank'><img src={github} className={style.github}/></a>
+      <a href="https://www.linkedin.com/in/lucasmandirola/" rel="noreferrer" target='_blank'><img alt='lkdn' src={linkedin} className={style.linkedin}/></a>
+      <a href="https://github.com/lucasmandirola/PI-Pokemon" rel="noreferrer"  target='_blank'><img alt='github' src={github} className={style.github}/></a>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { cleanDetail, getDetail, deleteById, cleanPoke } from "../redux/actions";
+import { cleanDetail, getDetail, cleanPoke, deleteById } from "../redux/actions";
 import style from './Details.module.css';
 import loading from './Imgs/loadingpokebola2.gif'
 
@@ -25,11 +25,11 @@ export default function Details(props){
 	function handleClick(e){
 		dispatch(cleanDetail())
 		dispatch(cleanPoke())
+		navigate('/home')
 		// console.log(detail)
 	}
 
 	function handleDelete(){
-		// console.log(poke.createdInDb)
 		dispatch(cleanPoke())
 		if(poke.createdInDb){ 
 			const sure = window.confirm('Estas seguro de eliminar este pokemon?');
@@ -42,11 +42,20 @@ export default function Details(props){
 		else alert('No se puede eliminar un pokemon original')
 	}
 
+	function handleUpdate(){
+		if(poke.createdInDb){
+			navigate(`/update/${id}`)
+		}
+		else{
+			alert('No se puede modificar un pokemon original')
+		}
+	}
+
 	return(
 		<div className={style.details}>
-			<Link to='/home'>
+			{/* <Link to='/home' className={style.buttondiv}> */}
 				<button onClick={() => handleClick()} className={style.button}>Volver</button>
-			</Link>
+			{/* </Link> */}
 			
 			<div className={style.pokeDetail}>
 			{poke.name ? (
@@ -77,6 +86,10 @@ export default function Details(props){
 						</div>
         	</div> 
 					<button onClick={() => handleDelete()} className={style.deleteButton}>Eliminar</button>
+					
+					<button className={style.deleteButton} onClick={() => handleUpdate()}>Modificar</button>
+				
+					
         </div>) : (<img className={style.loader} src={loading} alt='Cargando...' width='100px' height='130px'/>)
       }
 			</div>

@@ -2,6 +2,8 @@ const { Router } = require("express");
 const axios = require("axios");
 const { Pokemon, Types } = require("../db");
 const db = require("../db");
+const { Op } = require("sequelize");
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -27,7 +29,7 @@ const apiInfo = async () => {
     }
 
     const arrData = arrPokemons.map(async (el) => await axios.get(el.url));
-    let infoLista = await Promise.all(arrData).then((e) => {
+    let infoLista = Promise.all(arrData).then((e) => {
       const pokes = e.map((e) => e.data);
       pokes.map((p) => {
         arrDataPoke.push({
@@ -81,12 +83,14 @@ const dbInfo = async () => {
   });
   return arrLista;
 };
+
 const allPokemons = async () => {
   const apiPokes = await apiInfo();
   const dbPokes = await dbInfo();
   const todosPokes = apiPokes.concat(dbPokes);
   return todosPokes;
 };
+
 
 const nameApi = async (name) => {
   try {
@@ -116,41 +120,13 @@ const nameApi = async (name) => {
   }
 };
 
-// Promesas
-// const nameApi = (name) => {
-//   try {
-//     return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) => {
-//       let urlData = res.data;
-//       urlData = [
-//         {
-//           id: urlData.id,
-//           name: urlData.name,
-//           types:
-//             urlData.types.length < 2
-//               ? [urlData.types[0].type.name]
-//               : [urlData.types[0].type.name, urlData.types[1].type.name],
-//           image: urlData.sprites.other.home.front_default,
-//           hp: urlData.stats[0].base_stat,
-//           attack: urlData.stats[1].base_stat,
-//           defense: urlData.stats[2].base_stat,
-//           speed: urlData.stats[5].base_stat,
-//           height: urlData.height,
-//           weight: urlData.weight,
-//         }
-//       ]
-//       return urlData
-//     })
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// } 
+
 
 const nameDb = async (name) => {
   try {
     const nombreDb = await Pokemon.findAll({
       where: {
-        name: name,
+        name: {name},
       },
       include: {
         model: Types,
@@ -203,7 +179,7 @@ router.get("/pokemons", async (req, res) => {
     console.log(error);
   }
 });
-//ASYNC AWAIT
+
 const getApiId = async (id) => {
   try {
     const apiId = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -229,32 +205,6 @@ const getApiId = async (id) => {
   }
 };
 
-//PROMESAS
-// const getApiId = (id) => {
-//   try {
-//     return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => {
-//       let info = res.data;
-//       const detail = {
-//         id: info.id,
-//         name: info.name,
-//         types:
-//           info.types.length < 2
-//             ? [info.types[0].type.name]
-//             : [info.types[0].type.name, info.types[1].type.name],
-//         image: info.sprites.other.home.front_default,
-//         hp: info.stats[0].base_stat,
-//         attack: info.stats[1].base_stat,
-//         defense: info.stats[2].base_stat,
-//         speed: info.stats[5].base_stat,
-//         height: info.height,
-//         weight: info.weight,
-//       };
-//       return detail;
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 const idDb = async (id) => {
   try {
@@ -374,5 +324,32 @@ router.delete("/delete/:id", async (req, res) => {
     console.log(error);
   }
 });
+
+router.put('/update/:id', async (req, res) => {
+  try{
+    const {id} = req.params
+    let {    
+      name,
+      types,
+      image,
+      hp,
+      attack,
+      defense,
+      speed,
+      height,
+      weight,
+    } = req.body
+    await Pokemon.update(
+      {name, types, image, hp, attack, defense, speed, height, weight},
+      {
+        where: {id}
+      }
+    )
+    res.send({msg: 'actualizado'})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 module.exports = router;
