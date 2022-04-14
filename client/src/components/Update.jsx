@@ -84,7 +84,7 @@ export default function Update(){
 
   async function handleSubmit(e){
 		e.preventDefault()
-    const sure = window.confirm('Estas seguro de eliminar este pokemon?');
+    const sure = window.confirm('Estas seguro de modificar este pokemon?');
     if(sure){
 		  dispatch(cleanPoke())
 			setErrors({})
@@ -106,16 +106,16 @@ export default function Update(){
   }
 	}
 
-  function handleDelete(el){
-		setErrors(validate({
-			...input,
-			types: input.types.filter((e) => e !== el)
-		}))
-		setInput({
-			...input,
-			types: input.types.filter(t => t !== el)
-		})
-
+  function handleDeleteType(el){
+		// setErrors(validate({
+		// 	...input,
+		// 	types: input.types.filter((e) => e !== el)
+		// }))
+		// setInput({
+		// 	...input,
+		// 	types: input.types.filter(t => t !== el)
+		// })
+    alert('El campo "tipos" no es modificable')
 	}
 
   return (
@@ -184,7 +184,8 @@ export default function Update(){
 					<div className={style.typeSelected}>
 					{input.types.map((e) => (
 						<div key={e}>
-							<label className={style.labelTypes}>👉{e.charAt(0).toUpperCase() + e.slice(1)}</label><button className={style.typeButton} onClick={() => handleDelete(e)}>x</button>
+							<label className={style.labelTypes}>👉{e.charAt(0).toUpperCase() + e.slice(1)}</label>
+              {/* <button className={style.typeButton} onClick={() => handleDeleteType()}>x</button> */}
 						</div>
 					))}
 					</div>
