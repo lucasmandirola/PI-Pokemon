@@ -339,12 +339,19 @@ router.put('/update/:id', async (req, res) => {
       height,
       weight,
     } = req.body
-    await Pokemon.update(
-      {name, types, image, hp, attack, defense, speed, height, weight},
+    const updatePoke = await Pokemon.update(
+      {name, image, hp, attack, defense, speed, height, weight},
       {
         where: {id}
       }
     )
+    let dbTypes = await Types.findAll({
+      where: {
+        name: types,
+      },
+    });
+    const poke = await Pokemon.findOne({where: {id}})
+    poke.setTypes(dbTypes.map(t => t.id))
     res.send({msg: 'actualizado'})
   }
   catch(err){

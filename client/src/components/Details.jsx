@@ -85,10 +85,11 @@ export default function Details(props){
           		</div>
 						</div>
         	</div> 
-					<button onClick={() => handleDelete()} className={style.deleteButton}>Eliminar</button>
-					
-					<button className={style.deleteButton} onClick={() => handleUpdate()}>Modificar</button>
-				
+					<div className={style.buttonContains}>
+						<button onClick={() => handleDelete()} className={style.deleteButton}>Eliminar</	button>
+								
+						<button className={style.deleteButton} onClick={() => handleUpdate()}	>Modificar</button>
+					</div>
 					
         </div>) : (<img className={style.loader} src={loading} alt='Cargando...' width='100px' height='130px'/>)
       }

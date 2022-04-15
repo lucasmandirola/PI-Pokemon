@@ -43,7 +43,7 @@ export default function Update(){
 		if(input.speed > 200 || input.speed < 0) errors.speed = 'El campo "velocidad" es obligatorio y debe tener en 0 y 200 puntos'
 		if(input.height > 200 || input.height < 0) errors.height = 'El campo "altura" es obligatorio y debe tener en 0 y 200 puntos'
 		if(input.weight > 200 || input.weight < 0) errors.weight = 'El campo "peso" es obligatorio y debe tener en 0 y 200 puntos'
-		// if(input.types.length === 0) errors.types = 'El campo "tipos" es obligatorio y pueden ser máximo 2'
+		if(input.types.length === 0) errors.types = 'El campo "tipos" es obligatorio y pueden ser máximo 2'
 		return errors
 	}
 
@@ -59,22 +59,22 @@ export default function Update(){
 	}
 
   function handleSelect(e){
-		// setErrors(validate({
-		// 	...input,
-		// 	types: e.target.value.toLowerCase()
-		// }))
-		// if(e.target.value === input.types[0] && input.types.length < 2) alert('No se puede seleccionar el mismo tipo 2 veces')
-		// else if (input.types.length < 2) {
-		// 	setInput({
-		// 		...input,
-		// 		types: [...input.types, e.target.value]
-		// 	})
-    //   console.log(input.types)
-		// }
-		// else{
-		// 	alert('El campo "tipos" puede ser máximo 2')
-		// }
-    alert('El campo "tipos" no es modificable')
+		setErrors(validate({
+			...input,
+			types: e.target.value.toLowerCase()
+		}))
+		if(e.target.value === input.types[0] && input.types.length < 2) alert('No se puede seleccionar el mismo tipo 2 veces')
+		else if (input.types.length < 2) {
+			setInput({
+				...input,
+				types: [...input.types, e.target.value]
+			})
+      console.log(input.types)
+		}
+		else{
+			alert('El campo "tipos" puede ser máximo 2')
+		}
+    // alert('El campo "tipos" no es modificable')
 	}
 
   function handleBack() {
@@ -82,7 +82,7 @@ export default function Update(){
     navigate(`/details/${id}`)
 	}
 
-  async function handleSubmit(e){
+  function handleSubmit(e){
 		e.preventDefault()
     const sure = window.confirm('Estas seguro de modificar este pokemon?');
     if(sure){
@@ -106,16 +106,16 @@ export default function Update(){
   }
 	}
 
-  function handleDeleteType(el){
-		// setErrors(validate({
-		// 	...input,
-		// 	types: input.types.filter((e) => e !== el)
-		// }))
-		// setInput({
-		// 	...input,
-		// 	types: input.types.filter(t => t !== el)
-		// })
-    alert('El campo "tipos" no es modificable')
+	function handleDelete(el){
+		setErrors(validate({
+			...input,
+			types: input.types.filter((e) => e !== el)
+		}))
+		setInput({
+			...input,
+			types: input.types.filter(t => t !== el)
+		})
+
 	}
 
   return (
@@ -184,8 +184,7 @@ export default function Update(){
 					<div className={style.typeSelected}>
 					{input.types.map((e) => (
 						<div key={e}>
-							<label className={style.labelTypes}>👉{e.charAt(0).toUpperCase() + e.slice(1)}</label>
-              {/* <button className={style.typeButton} onClick={() => handleDeleteType()}>x</button> */}
+							<label className={style.labelTypes}>👉{e.charAt(0).toUpperCase() + e.slice(1)}</label><button className={style.typeButton} onClick={() => handleDelete(e)}>x</button>
 						</div>
 					))}
 					</div>
