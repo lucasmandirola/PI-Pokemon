@@ -141,6 +141,7 @@ export default function CreatePokemon(){
 
 	function handleBack() {
 		dispatch(cleanPoke())
+		navigate('/home')
 	}
 
   return (
@@ -155,46 +156,52 @@ export default function CreatePokemon(){
 						<input type='text' className={style.inputName} value={input.name} name='name' onChange={(e) => handleChange(e)}/>
 						<p>{errors.name}</p>
 					</div>
-					<div className={style.leftStats}>
+					<div className={style.stats}>
         		<div className={style.hp}>
 							<label className={style.label}>Vida: </label>
 							<input className={style.inputNumber} type='number' value={input.hp} name='hp' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.hp} name='hp' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.hp}</p>
 						</div>
 
         		<div  className={style.attack}>
 							<label className={style.label}>Fuerza: </label>
 							<input className={style.inputNumber} type='number' value={input.attack} name='attack' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.attack} name='attack' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.attack}</p>
 						</div>
 
         		<div className={style.defense}>
 							<label className={style.label}>Defensa: </label>
 							<input className={style.inputNumber} type='number' value={input.defense} name='defense' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.defense} name='defense' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.defense}</p>
 						</div>
-					</div>
-					<div className={style.rightStats}>
+					{/* </div> */}
+					{/* <div className={style.rightStats}> */}
         		<div className={style.speed}>
 							<label className={style.label}>Velocidad: </label>
 							<input className={style.inputNumber} type='number' value={input.speed} name='speed' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.speed} name='speed' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.speed}</p>
 						</div>
 
         		<div className={style.height}>
 							<label className={style.label}>Altura: </label>
 							<input className={style.inputNumber} type='number' value={input.height} name='height' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.height} name='height' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.height}</p>
 						</div>
 
         		<div className={style.weight}>
 							<label className={style.label}>Peso: </label>
 							<input className={style.inputNumber} type='number' value={input.weight} name='weight' onChange={(e) => handleChange(e)}/>
+							<input type='range' value={input.weight} name='weight' onChange={(e) => handleChange(e)} min='0' max='200' step='1' className={style.fields}></input>
 							<p>{errors.weight}</p>
 						</div>
 					</div>
         	<div className={style.image}>
-						<label className={style.label}>URL de la imagen: </label>
+						<label className={style.labelIMG}>URL de la imagen: </label>
 						<input type='url' className={style.inputImage} value={input.image} name='image' onChange={(e) => handleChange(e)}/>
 					</div>
 

@@ -5,19 +5,23 @@ html {
 }
 
 .create {
-  background-image: url(./Imgs/create1.png);
+  /* background-image: url(./Imgs/create1.png) ;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   height: 100vh;
+  width: 100vw;
   background-position: center;
   background-repeat: no-repeat;
+  position: fixed;
+  background-size: cover; */
+  background: url('./Imgs/create1.png') no-repeat center center fixed;
   background-size: cover;
+  height: 100vh;
 }
 
 .containerFather{
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-top: 65px;
+  margin-left: 90px;
 }
 
 .container {
@@ -53,16 +57,34 @@ html {
   font-family: 'Poppins';
   text-align: center;
   margin-left: 50px;
+  margin-top: -30px;
+}
+
+.stats {
+  width: 600px;
+  /* border: 1px solid white; */
 }
 
 .label {
+  display: inline-block;
   color: white;
   font-family: 'Poppins';
   font-weight: 200;
+  width: 100px;
+}
+
+.labelIMG{
+  display: inline-block;
+  color: white;
+  font-family: 'Poppins';
+  font-weight: 200;
+  margin-right: 15px;
+  /* width: 100px; */
 }
 
 .inputNumber {
   margin-left: 10px;
+  margin-right: 20px;
   width: 42px;
   background-color: transparent;
   border: none;
@@ -72,6 +94,7 @@ html {
 
 .name {
   text-align: center;
+  margin-top: -10px;
 }
 
 .inputName{
@@ -81,25 +104,30 @@ html {
   color: white;
 }
 
+.fields {
+  width: 320px;
+  color: blue;
+}
 
-.leftStats {
+
+/* .leftStats {
   display: block;
   width: 210px;
   height: 130px;
   margin-left: 70px;
-  /* margin-bottom: 10px; 
-  /* border: white 1px solid; */
-}
+  margin-bottom: 10px; 
+  border: white 1px solid;
+} */
 
-.rightStats {
+/* .rightStats {
   display: block;
   width: 210px;
   height: 130px;
   margin-left: 295px;
   margin-top: -130px;
   margin-bottom: 10px;
-  /* border: white 1px solid; */
-}
+  border: white 1px solid;
+} */
 
 p {
   height: 10px;
@@ -146,11 +174,13 @@ p {
   margin: auto;
   padding: 5px 30px;
   border-radius: 3px;
+  margin-top: 0px;
 }
 
 .typeSelected{
   margin-bottom: 10px;
   text-align: center;
+  margin-top: -15px;
   height: 50px;
   /* border: 1px solid white; */
 }
