@@ -12,7 +12,7 @@ export const CLEAN_DETAIL = "CLEAN_DETAIL"
 export const CLEAN_POKEMON = 'CLEAN_POKEMON'
 export const DELETE_BY_ID = 'DELETE_BY_ID';
 export const UPDATE_BY_ID = 'UPDATE_BY_ID'
-const URLBack = 'http://localhost:3001'
+// const URLBack = 'http://localhost:3001'
 
 
 
@@ -20,7 +20,7 @@ const URLBack = 'http://localhost:3001'
 export function getPokemons() {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`${URLBack}/pokemons`);
+      const json = await axios.get(`/pokemons`);
       return dispatch({
         type: GET_POKEMONS,
         payload: json.data,
@@ -34,7 +34,7 @@ export function getPokemons() {
 export function getTypes(){
   return async function(dispatch){
     try {
-      const json = await axios.get(`${URLBack}/types`);
+      const json = await axios.get(`/types`);
       return dispatch({
         type: GET_TYPES,
         payload: json.data
@@ -77,7 +77,7 @@ export function orderByAttack(payload){
 export function getName(name){
   return async function (dispatch){
     try {
-      var json = await axios.get(`${URLBack}/pokemons?name=${name}`)
+      var json = await axios.get(`/pokemons?name=${name}`)
       return dispatch ({
         type: GET_NAMES,
         payload: json.data
@@ -91,7 +91,7 @@ export function getName(name){
 
 export function postPokemon(payload){
   return async function(dispatch){
-    const json = await axios.post(`${URLBack}/pokemons`, payload)
+    const json = await axios.post(`/pokemons`, payload)
     return json 
   }
 }
@@ -99,7 +99,7 @@ export function postPokemon(payload){
 export function getDetail(id){
     return async function(dispatch){
       try{
-        const json = await axios.get(`${URLBack}/pokemons/${id}`)
+        const json = await axios.get(`/pokemons/${id}`)
         return dispatch({
           type: GET_DETAILS,
           payload: json.data
@@ -128,7 +128,7 @@ export function cleanPoke(){
 export function deleteById (id) {
   return async function (dispatch){
     try {
-      const json = await axios.delete(`${URLBack}/delete/${id}`)
+      const json = await axios.delete(`/delete/${id}`)
       return dispatch({
         type: DELETE_BY_ID,
         payload: json.data
@@ -142,7 +142,7 @@ export function deleteById (id) {
 export function update(id, payload){
   return async function (dispatch){
     try{
-      const json = await axios.put(`${URLBack}/update/${id}`, payload)
+      const json = await axios.put(`/update/${id}`, payload)
       return dispatch({
         type: UPDATE_BY_ID,
         payload: json.data
