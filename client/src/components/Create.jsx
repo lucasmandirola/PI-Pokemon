@@ -206,7 +206,7 @@ export default function CreatePokemon(){
 						
 					</div>
 					<div className={style.img}>
-					<img  src={input.image} width='100px' height='120px' />
+					<img  src={input.image === '' ? "https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" : input.image} width='100px' height='120px' />
 					</div>
 					<div className={style.types}><label className={style.label}>*Tipos: </label>
 						<select className={style.selectTypes} onChange={(e) => handleSelect(e)}>
