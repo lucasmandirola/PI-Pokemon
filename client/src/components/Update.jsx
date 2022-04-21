@@ -84,6 +84,8 @@ export default function Update(){
 
   function handleSubmit(e){
 		e.preventDefault()
+		if(input.name === '') alert('Revisar los campos obligatorios')
+		else{
     const sure = window.confirm('Estas seguro de modificar este pokemon?');
     if(sure){
 		  dispatch(cleanPoke())
@@ -103,6 +105,7 @@ export default function Update(){
 			})
 			navigate(`/details/${id}`)
       // navigate(`/home`)
+		}
   }
 	}
 

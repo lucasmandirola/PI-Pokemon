@@ -95,6 +95,8 @@ export default function CreatePokemon(){
 
 	async function handleSubmit(e){
 		e.preventDefault()
+		if(input.name === '') alert('Revisar los campos obligatorios')
+		else {
 		dispatch(cleanPoke())
 		// let equals = false
 		// allPokes.map(p => {
@@ -124,7 +126,7 @@ export default function CreatePokemon(){
 				types: []
 			})
 			navigate('/home')
-		// }
+		}
 	}
 
 	function handleDelete(el){
