@@ -84,7 +84,7 @@ export default function Update(){
 
   function handleSubmit(e){
 		e.preventDefault()
-		if(input.name === '') alert('Revisar los campos obligatorios')
+		if(input.name === '' || input.types.length === 0) alert('Revisar los campos obligatorios')
 		else{
     const sure = window.confirm('Estas seguro de modificar este pokemon?');
     if(sure){

@@ -95,7 +95,7 @@ export default function CreatePokemon(){
 
 	async function handleSubmit(e){
 		e.preventDefault()
-		if(input.name === '') alert('Revisar los campos obligatorios')
+		if(input.name === '' || input.types.length === 0) alert('Revisar los campos obligatorios')
 		else {
 		dispatch(cleanPoke())
 		// let equals = false
