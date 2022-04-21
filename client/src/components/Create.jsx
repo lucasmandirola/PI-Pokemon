@@ -203,8 +203,11 @@ export default function CreatePokemon(){
         	<div className={style.image}>
 						<label className={style.labelIMG}>URL de la imagen: </label>
 						<input type='url' className={style.inputImage} value={input.image} name='image' onChange={(e) => handleChange(e)}/>
+						
 					</div>
-
+					<div className={style.img}>
+					<img  src={input.image} width='100px' height='120px' />
+					</div>
 					<div className={style.types}><label className={style.label}>*Tipos: </label>
 						<select className={style.selectTypes} onChange={(e) => handleSelect(e)}>
 							{types?.map((e) => (

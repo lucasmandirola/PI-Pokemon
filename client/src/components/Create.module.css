@@ -154,7 +154,7 @@ p {
 }
 
 .selectTypes {
-  margin-top: 25px;
+  margin-top: 0px;
   width: 100px;
   background-color: transparent;
   color: white;
@@ -190,6 +190,15 @@ p {
   font-family: 'Poppins';
   font-weight: 100;
   font-size: 12px;
+}
+
+.img {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  /* border: white 1px solid; */
+  width: 500px;
 }
 
 .typeButton{
